@@ -1,6 +1,12 @@
 import { Avatar, AvatarFallback } from "@/app/components/ui/avatar";
 
-const TodoItem = (props) => {
+type Props = {
+  link:string;
+  serialNumber: number;
+  title:string
+}
+
+const TodoItem = (props:Props) => {
   return (
     <tr className="*:p-2 text-sm md:p-3 mx-2 hover:bg-gray-200 border-b space-x-5">
       <td className="px-3">{props.serialNumber}</td>
@@ -13,7 +19,7 @@ const TodoItem = (props) => {
       <td>
         <div className={"items-end"}>
           {" "}
-          <Avatar>
+          <Avatar className={""}>
             <AvatarFallback className={"bg-gray-50"}>U1</AvatarFallback>
           </Avatar>
         </div>

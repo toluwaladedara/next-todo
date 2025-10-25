@@ -3,9 +3,9 @@ import { fetchTodoItem } from "@/app/services/api/typicode-service";
 import { Badge } from "@/app/components/ui/badge";
 import { ArrowLeftIcon, CheckCircle, CircleEllipsis } from "lucide-react";
 
-const Todo = async ({id}) => {
+const Todo = async ({id}:{id:number}) => {
   
-  const todo = await fetchTodoItem(id);
+  const todo = (await fetchTodoItem(id))??{id: null, title: null, completed:false};
 
   return (
     <div className="grid mt-4 text-xs md:text-[1rem] grid-cols-12">
@@ -30,7 +30,7 @@ const Todo = async ({id}) => {
   );
 };
 
-const Status = ({ completed }) => {
+const Status = ({ completed }:{completed: boolean}) => {
   return (
     <Badge variant="secondary" className={`${completed ? "bg-green-600": "bg-purple-600"} text-white`}>
       {completed ? (

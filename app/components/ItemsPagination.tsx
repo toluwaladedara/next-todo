@@ -1,21 +1,27 @@
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/app/components/ui/pagination";
+import { TodoItem } from "../services/api/typicode-service";
+
+type PaginationProps = {
+  className: string;
+  items: number;
+  itemsPerPage: number;
+  currentPage: number
+}
 
 const ItemsPagination = ({
   className,
   items,
   itemsPerPage,
   currentPage,
-  setCurrentPage,
-}) => {
+}: PaginationProps) => {
   const numberOfPages = Math.ceil(items/ itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
 
   return (
     <Pagination className={className}>
-      <PaginationContent>
+      <PaginationContent className={""}>
         <PaginationItem>
           {currentPage > 1 && (
-            <PaginationPrevious
+            <PaginationPrevious className={""}
               href={"/?page" + (currentPage - 1)}
              
             ></PaginationPrevious>
@@ -26,20 +32,20 @@ const ItemsPagination = ({
           currentPage > 2 && (
             <>
               <PaginationItem>
-                <PaginationLink
+                <PaginationLink isActive={false} className={""}
                   href="/?page=1"
                 >
                   1
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationEllipsis />
+                <PaginationEllipsis className={""} />
               </PaginationItem>
             </>
           )
         }
         <PaginationItem>
-          <PaginationLink href="#" isActive>
+          <PaginationLink className={""} href="#" isActive>
             {currentPage}
           </PaginationLink>
         </PaginationItem>
@@ -49,10 +55,10 @@ const ItemsPagination = ({
             <>
               
               <PaginationItem>
-                <PaginationEllipsis />
+                <PaginationEllipsis className={""} />
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink
+                <PaginationLink isActive={false} className={""}
                   href={`?page=${numberOfPages}`}
                 >
                     {numberOfPages}
@@ -63,7 +69,7 @@ const ItemsPagination = ({
         }
         <PaginationItem>
           {currentPage < numberOfPages && (
-            <PaginationNext
+            <PaginationNext className={""}
               href={`?page=${currentPage + 1}`}
              
             ></PaginationNext>

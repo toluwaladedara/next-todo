@@ -6,10 +6,10 @@ import { fetchAllTodoItems } from "@/app/services/api/typicode-service";
 import ItemsPagination from "./ItemsPagination";
   import { redirect } from "next/navigation";
 
-async function App(props) {
+async function App(props:{searchParams:{page: number}}) {
   const pageSize = 10;
 
-  let todos = await fetchAllTodoItems();
+  let todos = await fetchAllTodoItems() ?? [];
   let page = props.searchParams.page ?? 1;
   const numberOfPages = Math.ceil(todos.length / pageSize);
   const startIndex = (page - 1) * pageSize;
@@ -48,9 +48,6 @@ async function App(props) {
           currentPage={page}
           items={todos.length}
           itemsPerPage={pageSize}
-          setCurrentPage={(page) => {
-            redirect(`/?page=${page}`);
-          }}
         />
       </div>
     </div>
