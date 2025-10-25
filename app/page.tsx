@@ -5,5 +5,7 @@ export default async function HomePage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  return <App searchParams={await searchParams}/>;
+  const literalSerchParams = await searchParams;
+  const pageNumber = literalSerchParams.page ? parseInt(literalSerchParams.page as string) : 1;
+  return <App searchParams={{page: pageNumber}}/>;
 }

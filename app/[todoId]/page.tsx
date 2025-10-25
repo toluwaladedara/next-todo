@@ -6,5 +6,5 @@ export default async function TodoItemPage({
   params: Promise<{ todoId: string }>
 }) {
   let {todoId} = await params;
-  return <div><Todo id={todoId}/></div>;
+  return <div><Todo id={parseInt(todoId)}/></div>;
 }
